@@ -1,0 +1,141 @@
+<doctype html>
+<head>
+    <html>
+    <style>
+        .nav{
+            display: block
+        }
+        
+        .mybox{
+        	border: 1px solid #999;
+        	border-radius: 5px;
+        	padding: 10px;
+        	margin: 10px;
+        }   
+        .active
+        {
+            background-color:lightblue;
+        }
+        </style>
+
+<head>
+    
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+    
+<body> 
+    
+ <script src="app/d.js"></script>
+
+<div class="container-fluid" style="background-color: #333333" >
+<font color="white"> <center> <h1>Directory</h1></center></font>
+                          
+<div class="row search">
+<div class="col-sm-6 col-sm-offset-4">
+<form role="form">
+<div class="input-group">
+<input type="text" id="searchterm" class="form-control input-sm" placeholder="Search Directory">
+<span class="input-group-btn">
+<button class="btn btn-default btn-sm" type="button" onclick="searchall()" style="padding: 8px"><span class="glyphicon glyphicon-search"></span></button>
+</span>
+</div>
+</form>
+</div>
+</div>
+</div>
+<br> 
+<div class="button">
+ <ul class="nav nav-tabs">
+    <li><a class="all" role="button"onclick="searchall()">All</a></li> 
+    <li><a class="filter btn" role="button" onclick="searchform()" id="staff">Staff</a></li>
+    <li><a class="filter btn" role="button" onclick="searchform()"id="faculty">Faculty</a></li>
+    <li><a class="filter btn" role="button" onclick="searchform()"id="student">Student</a></li>
+ </ul>
+</div> 
+    
+  
+    <!--<a class="btn" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+         <span class="glyphicon glyphicon-align-justify"></span>&nbsp;
+    </a> 
+    <div class="collapse" id="collapseExample" style="text-align: left; width:200px;background-color: #333333ji">     
+
+                        <nav class="navbar navbar-inverse navbar-static-top custom-navbar">
+  <ul class="nav">
+      
+             <li><a href="#"><img class="slider-icon" src="images/home@2x.png" width="22" height="22"/>&nbsp; &nbsp;Home</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/directory@2x.png" width="22" height="22"/>&nbsp; &nbsp;Directory</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/athletics@2x.png" width="22" height="22"/>&nbsp; &nbsp;Athletics</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/myodu@2x.png" width="22" height="22"/>&nbsp; &nbsp;My ODU</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/library@2x.png" width="22" height="22"/>&nbsp; &nbsp;Library</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/news@2x.png" width="22" height="22"/>&nbsp; &nbsp;News</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/events@2x.png" width="22" height="22"/>&nbsp; &nbsp;Events</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/livesafe@2x.png" width="22" height="22"/>&nbsp; &nbsp;Live Safe</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/maps@2x.png" width="22" height="22"/>&nbsp; &nbsp;Maps</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/places@2x.png" width="22" height="22"/>&nbsp; &nbsp;Places</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/emergency@2x.png" width="22" height="22"/>&nbsp; &nbsp;Emergency</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/blackboard@2x.png"width="22" height="22"/>&nbsp; &nbsp;Blackboard</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/improve@2x.png" width="22" height="22"/>&nbsp; &nbsp;ImproveODU</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/survey@2x.png" width="22" height="22"/>&nbsp; &nbsp;Survey</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/courses@2x.png" width="22" height="22"/>&nbsp; &nbsp;Courses</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/transit@2x.png" width="22" height="22"/>&nbsp; &nbsp;Transit</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/monarchlink@2x.png" width="22" height="22"/>&nbsp; &nbsp;Monarch Link</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/labs@2x.png" width="22" height="22"/>&nbsp; &nbsp;Labs</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/dining@2x.png" width="22" height="22"/>&nbsp; &nbsp;Dining</a></li>
+			<li><a href="#"><img class="slider-icon" src="images/move@2x.png" width="22" height="22"/>&nbsp; &nbsp;Move</a></li>
+</div>
+   
+        -->
+	<div class="row">
+	<div class="col-md-12">
+	 <div id="demo">
+        </div>
+		<div class="table-responsive">
+		  <table class="table table-bordered" id="resultTab" position="center"></table>
+		</div>
+	</div>
+	</div>
+	
+	
+	<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="text-align: center">INFO</h4>
+      </div>
+      <div class="modal-body" id="full_details"></div>
+   
+    </div>
+
+  </div>
+</div>
+
+   </body> 
+    <script>
+        $(document).ready(function() {
+            $('.filter').click(function() {
+            searchform($(this).attr("id").toLowerCase());
+            }); 
+        });
+    $('.nav.nav-tabs>li>a').click(function(e) {
+   $( ".nav.nav-tabs > li" ).children().removeClass("active")
+    var $this = $(this);
+    if (!$this.hasClass('active')) {
+        $this.addClass('active');
+    }
+});
+        $('.btn.btn-default.btn-sm').click(function(){
+         $( ".nav.nav-tabs > li" ).children().removeClass("active");
+             $(".nav.nav-tabs > li").children("a.all").addClass("active");
+         });
+    
+    </script>
+    </html>
+  
+  
